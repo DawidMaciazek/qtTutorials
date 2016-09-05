@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.1.0, 2016-09-05T09:48:49. -->
+<!-- Written by QtCreator 4.0.3, 2016-09-04T19:12:52. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
-  <value type="QByteArray">{021a36cd-54c8-408d-9bc9-ca30911d8d66}</value>
+  <value type="QByteArray">{8fef58eb-6f0d-4707-a96c-a1bf661b32e9}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -303,8 +303,8 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">qgraphicsview_scene_82</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">qgraphicsview_scene_822</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/dawid/pro/qt_tutorial/20_custom_qgraphicsitem/qgraphicsview_scene_82/qgraphicsview_scene_82.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/dawid/pro/qtTutorials/20_custom_qgraphicsitem/qgraphicsview_scene_82/qgraphicsview_scene_82.pro</value>
     <value type="bool" key="QmakeProjectManager.QmakeRunConfiguration.UseLibrarySearchPath">true</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments"></value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">qgraphicsview_scene_82.pro</value>
