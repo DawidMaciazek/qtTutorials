@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -15,10 +15,12 @@ TEMPLATE = app
 SOURCES += main.cpp\
         dialog.cpp \
     ppball.cpp \
-    ppboundary.cpp
+    ppboundary.cpp \
+    pppaddle.cpp
 
 HEADERS  += dialog.h \
     ppball.h \
-    ppboundary.h
+    ppboundary.h \
+    pppaddle.h
 
 FORMS    += dialog.ui
