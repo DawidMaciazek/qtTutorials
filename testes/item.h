@@ -20,9 +20,9 @@ public:
     int getIndex();
 
 private slots:
-    void on_pushButton_clicked();
-
     void on_comboBox_currentIndexChanged(int index);
+
+    void on_toolButton_clicked();
 
 signals:
     void removeItem(int index);

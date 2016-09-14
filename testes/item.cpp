@@ -31,13 +31,6 @@ int Item::getIndex()
     return index;
 }
 
-void Item::on_pushButton_clicked()
-{
-    //this->deleteLater();
-    //emit removeItem(index);
-    emit deleteItem(this);
-}
-
 void Item::on_comboBox_currentIndexChanged(int index)
 {
     qDebug() << "current index" << index;
@@ -61,3 +54,11 @@ void Item::on_comboBox_currentIndexChanged(int index)
 
     ui->horizontalLayout->addWidget(currentDisplay);
 }
+
+void Item::on_toolButton_clicked()
+{
+    //this->deleteLater();
+    //emit removeItem(index);
+    emit deleteItem(this);
+}
+

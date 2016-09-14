@@ -13,8 +13,12 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        dialog.cpp
+        dialog.cpp \
+    tinyexpr.c \
+    expparser.cpp
 
-HEADERS  += dialog.h
+HEADERS  += dialog.h \
+    tinyexpr.h \
+    expparser.h
 
 FORMS    += dialog.ui

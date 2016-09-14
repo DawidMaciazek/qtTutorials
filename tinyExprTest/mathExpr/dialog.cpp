@@ -1,28 +1,31 @@
 #include "dialog.h"
 #include "ui_dialog.h"
 #include "tinyexpr.h"
-enum dupa {jas, i, malgosia};
 
-dupa[0];
+#include "expparser.h"
+
+#include <QDebug>
+#include <string>
+
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog)
 {
     ui->setupUi(this);
+    ui->lineEdit_2->setText("2");
 
-    char texp[] = "1+2+exp(11)";
-
-    int parseErr;
-    double x;
-
-    te_variable vars[] = {{"x", &x}};
-    te_expr *epar = te_compile(texp, vars, 1, &parseErr);
-
-    te_free(epar);
 }
 
 Dialog::~Dialog()
 {
     delete ui;
+}
+
+void Dialog::on_lineEdit_editingFinished()
+{
+    double x = ui->lineEdit_2->text().toDouble();
+    double res = (ExpParser(ui->lineEdit->text()))(x);
+
+    ui->label->setText(QString::number(res));
 }
