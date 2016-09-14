@@ -13,10 +13,11 @@ class Item : public QWidget
     Q_OBJECT
 
 public:
-    explicit Item(QString name, QWidget *parent = 0);
+    explicit Item(QString name, int index, QWidget *parent = 0);
     ~Item();
 
     QLineEdit *left;
+    int getIndex();
 
 private slots:
     void on_pushButton_clicked();
@@ -25,9 +26,14 @@ private slots:
 
     void on_lineEdit_2_editingFinished();
 
+signals:
+    void removeItem(int index);
+    void deleteItem(Item *item);
+
 private:
     Ui::Item *ui;
     QString name;
+    int index;
 
 };
 

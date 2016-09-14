@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>123</height>
+    <width>575</width>
+    <height>41</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Name:</string>
+      <string>Gauss:</string>
      </property>
     </widget>
    </item>
@@ -29,7 +29,25 @@
     </widget>
    </item>
    <item>
-    <widget class="QLineEdit" name="lineEdit"/>
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>sigma</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="lineEdit">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>delta</string>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QLineEdit" name="lineEdit_2">

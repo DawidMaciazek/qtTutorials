@@ -2,6 +2,7 @@
 #define DIALOG_H
 
 #include <QDialog>
+#include "item.h"
 
 namespace Ui {
 class Dialog;
@@ -18,7 +19,9 @@ public:
 private slots:
     void on_pushButton_clicked();
     void chlidrenDestroyed();
+    void chlidrenDestroyed(int);
     void childrenEdited(QString str);
+    void removeIten(Item *item);
 
 private:
     Ui::Dialog *ui;
