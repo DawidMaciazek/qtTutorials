@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-terminal="/dev/pts/3"
+terminal="/dev/pts/11"
 while true;
 do
   pos=$(cat $terminal | head -n 1)

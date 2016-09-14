@@ -56,7 +56,7 @@ Dialog::Dialog(QWidget *parent) :
 
     // serial communication
     serial = new QSerialPort(this);
-    serial->setPortName("/dev/pts/2");
+    serial->setPortName("/dev/pts/13");
     serial->open(QIODevice::ReadWrite);
     serial->setBaudRate(QSerialPort::Baud9600);
     serial->setDataBits(QSerialPort::Data8);

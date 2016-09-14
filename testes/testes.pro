@@ -14,10 +14,16 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         dialog.cpp \
-    item.cpp
+    item.cpp \
+    functiondelta.cpp \
+    functiongauss.cpp
 
 HEADERS  += dialog.h \
-    item.h
+    item.h \
+    functiondelta.h \
+    functiongauss.h
 
 FORMS    += dialog.ui \
-    item.ui
+    item.ui \
+    functiondelta.ui \
+    functiongauss.ui

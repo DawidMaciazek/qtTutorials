@@ -15,44 +15,12 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Gauss:</string>
-     </property>
-    </widget>
+    <widget class="QComboBox" name="comboBox"/>
    </item>
    <item>
     <widget class="Line" name="line">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>sigma</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="lineEdit">
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="label_3">
-     <property name="text">
-      <string>delta</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="lineEdit_2">
-     <property name="text">
-      <string/>
      </property>
     </widget>
    </item>

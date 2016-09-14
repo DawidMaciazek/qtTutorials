@@ -22,9 +22,7 @@ public:
 private slots:
     void on_pushButton_clicked();
 
-    void on_lineEdit_editingFinished();
-
-    void on_lineEdit_2_editingFinished();
+    void on_comboBox_currentIndexChanged(int index);
 
 signals:
     void removeItem(int index);
@@ -34,6 +32,8 @@ private:
     Ui::Item *ui;
     QString name;
     int index;
+    bool isDestroyable;
+    QWidget *currentDisplay;
 
 };
 

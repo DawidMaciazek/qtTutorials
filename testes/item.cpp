@@ -1,6 +1,8 @@
 #include "item.h"
 #include "ui_item.h"
 #include <QDebug>
+#include <functiondelta.h>
+#include <functiongauss.h>
 
 Item::Item(QString name, int index, QWidget *parent) :
     QWidget(parent),
@@ -8,14 +10,15 @@ Item::Item(QString name, int index, QWidget *parent) :
     index(index),
     name(name)
 {
+    isDestroyable = false;
     ui->setupUi(this);
-    ui->label->setText(name);
-    ui->lineEdit->setValidator(new QDoubleValidator(0,3000,2,this));
+    //ui->label->setText(name);
+    //ui->lineEdit->setValidator(new QDoubleValidator(0,3000,2,this));
 
-    left = ui->lineEdit;
-
-    QLabel *lab = new QLabel("NEW!", this);
-    this->layout()->addWidget(lab);
+    //left = ui->lineEdit;
+    ui->comboBox->addItem("Gaussian");
+    ui->comboBox->addItem("Delta");
+    ui->comboBox->addItem("Custom");
 }
 
 Item::~Item()
@@ -35,14 +38,26 @@ void Item::on_pushButton_clicked()
     emit deleteItem(this);
 }
 
-void Item::on_lineEdit_editingFinished()
+void Item::on_comboBox_currentIndexChanged(int index)
 {
-    qDebug() << "new value for: " << name;
-    qDebug() << ui->lineEdit->text().toDouble();
-}
+    qDebug() << "current index" << index;
+    if(isDestroyable)
+    {
+        currentDisplay->deleteLater();
+    }
+    else
+    {
+        isDestroyable = true;
+    }
 
-void Item::on_lineEdit_2_editingFinished()
-{
+    if(index == 0)
+    {
+        currentDisplay = new FunctionDelta(this);
+    }
+    else if(index == 1)
+    {
+        currentDisplay = new functionGauss(this);
+    }
 
-    qDebug() << "Right valuer: " <<  ui->lineEdit_2->text();
+    ui->horizontalLayout->addWidget(currentDisplay);
 }

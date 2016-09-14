@@ -36,7 +36,7 @@ void Dialog::on_pushButton_clicked()
     //connect(itemm, SIGNAL(removeItem(int)),
     //        this, SLOT(chlidrenDestroyed(int)));
     //QList<Item *> itemList = this->findChildren<Item *>();
-    //qDebug() << itemList.size();
+    //qDebug() << itemList.size();/
     connect(itemm, SIGNAL(deleteItem(Item*)),
             this, SLOT(removeIten(Item*)));
 
