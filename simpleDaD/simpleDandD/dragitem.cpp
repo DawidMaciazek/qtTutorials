@@ -6,12 +6,13 @@
 #include <QDrag>
 #include <QPainter>
 
-DragItem::DragItem(QWidget *parent): QLabel(parent)
+DragItem::DragItem(int i, QWidget *parent): QLabel(parent)
 {
-    this->setText("<DRAG>");
+    this->setText("~~~~~\n-----\n<(" + QString::number(i) + ")>\n-----\n~~~~~");
 
     this->setStyleSheet("QLabel { background-color : gray ; }");
     setCursor((Qt::OpenHandCursor));
+    this->setMaximumHeight(150);
 }
 
 DragItem::~DragItem()
@@ -23,7 +24,13 @@ void DragItem::mousePressEvent(QMouseEvent *event)
     qDebug() << "mouse clicked ...";
     setCursor(Qt::ClosedHandCursor);
     QDrag *drag = new QDrag(this);
+
+    QByteArray itemData;
+    QDataStream dataStream(&itemData, QIODevice::WriteOnly);
+
     QMimeData *mime = new QMimeData;
+    mime->setData("application/x-dnditemdata", itemData);
+
 
 
     QImage image(":/resource/plot_img.png");

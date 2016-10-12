@@ -8,7 +8,7 @@ class DragItem : public QLabel
     Q_OBJECT
 
 public:
-    DragItem(QWidget *parent = 0);
+    DragItem(int i, QWidget *parent = 0);
     ~DragItem();
 
 protected:

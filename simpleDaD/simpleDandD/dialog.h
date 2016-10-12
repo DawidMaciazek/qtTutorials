@@ -23,9 +23,14 @@ private:
     QGraphicsColorizeEffect *shadowEffect;
     QGraphicsColorizeEffect *clearEffect;
 
+    int cnt;
+    int dragSource;
+
 protected:
     void dragMoveEvent(QDragMoveEvent *event) Q_DECL_OVERRIDE;
     void dragEnterEvent(QDragEnterEvent *event) Q_DECL_OVERRIDE;
+    void dropEvent(QDropEvent *event) Q_DECL_OVERRIDE;
+
 private slots:
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
