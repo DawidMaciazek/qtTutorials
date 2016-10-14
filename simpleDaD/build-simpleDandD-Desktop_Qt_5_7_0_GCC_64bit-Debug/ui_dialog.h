@@ -18,6 +18,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -30,7 +31,7 @@ public:
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
     QGridLayout *gridLayout_3;
-    QGridLayout *gridLayout;
+    QVBoxLayout *verticalLayout;
     QPushButton *pushButton_2;
 
     void setupUi(QDialog *Dialog)
@@ -57,11 +58,11 @@ public:
         gridLayout_3->setSpacing(6);
         gridLayout_3->setContentsMargins(11, 11, 11, 11);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
-        gridLayout = new QGridLayout();
-        gridLayout->setSpacing(6);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setSpacing(6);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
 
-        gridLayout_3->addLayout(gridLayout, 0, 0, 1, 1);
+        gridLayout_3->addLayout(verticalLayout, 0, 0, 1, 1);
 
         scrollArea->setWidget(scrollAreaWidgetContents);
 

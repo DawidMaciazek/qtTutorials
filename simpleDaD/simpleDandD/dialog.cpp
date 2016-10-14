@@ -6,6 +6,9 @@
 #include <QDragEnterEvent>
 #include <QDataStream>
 #include <QMimeData>
+#include <QVector>
+
+#include <QScrollBar>
 
 #include <QGraphicsColorizeEffect>
 
@@ -69,16 +72,24 @@ void Dialog::dragEnterEvent(QDragEnterEvent *event)
 void Dialog::dropEvent(QDropEvent *event)
 {
     int dragPos = event->pos().y();
-    int cnt = ui->gridLayout->rowCount();
+    int cnt = ui->verticalLayout->count();
+
+    QVector<DragItem *> widgets;
 
     int sourceIndex = -1;
     int swapIndex = -1;
+
     qDebug() << "dro event";
     for(int i=0; i<cnt; i++)
     {
         qDebug() << i;
         DragItem *currentWidget =
-                qobject_cast<DragItem *>(ui->gridLayout->itemAtPosition(i,0)->widget());
+                qobject_cast<DragItem *>(ui->verticalLayout->itemAt(i)->widget());
+
+        if(currentWidget)
+        {
+            widgets.append(currentWidget);
+        }
 
         int y = currentWidget->pos().y();
         int h = currentWidget->height();
@@ -93,14 +104,27 @@ void Dialog::dropEvent(QDropEvent *event)
             sourceIndex = i;
         }
     }
-    qDebug() <<  sourceIndex << " >> " << swapIndex  ;
 
-    if(sourceIndex == -1)
-        qDebug() << "from other widget";
+    for(int i=0; i<widgets.length(); i++)
+    {
+        qDebug() << "removing:"<<i;
+        ui->verticalLayout->removeWidget(widgets[i]);
+        //ui->gridLayout->removeWidget(widgets[i]);
+    }
 
-    if(swapIndex < 0)
-        return;
+    //for(int i=widgets.length()-1; i>=0; i--)
+    for(int i=0; i<widgets.length(); i++)
+    {
+        //if(i == 2)
+        //    continue;
+        ui->verticalLayout->addWidget(widgets[i]);
+    }
+    ui->verticalLayout->addWidget(widgets[2]);
 
+    qDebug() << ui->scrollArea->size();
+    qDebug() << ui->scrollArea->verticalScrollBar()->value();
+
+    /*
     DragItem *sourceWidget = qobject_cast<DragItem *>(ui->gridLayout->itemAtPosition(sourceIndex,0)->widget());
     DragItem *swapWidget = qobject_cast<DragItem *>(ui->gridLayout->itemAtPosition(swapIndex,0)->widget());
 
@@ -118,6 +142,7 @@ void Dialog::dropEvent(QDropEvent *event)
 
     qDebug() << "----";
     dragSource = -1;
+    */
 }
 
 void Dialog::on_pushButton_clicked()
@@ -138,6 +163,7 @@ void Dialog::on_pushButton_2_clicked()
 {
     DragItem *drag = new DragItem(cnt, this);
     //ui->gridLayout->addWidget(drag,cnt,0);//,Qt::AlignTop);
-    ui->gridLayout->addWidget(drag,cnt,0);
+    //ui->gridLayout->addWidget(drag,cnt,0);
+    ui->verticalLayout->addWidget(drag);
     cnt++;
 }
