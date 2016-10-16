@@ -33,6 +33,7 @@ public:
     QGridLayout *gridLayout_3;
     QVBoxLayout *verticalLayout;
     QPushButton *pushButton_2;
+    QVBoxLayout *verticalLayout_2;
 
     void setupUi(QDialog *Dialog)
     {
@@ -46,14 +47,14 @@ public:
         pushButton = new QPushButton(Dialog);
         pushButton->setObjectName(QStringLiteral("pushButton"));
 
-        gridLayout_2->addWidget(pushButton, 1, 0, 1, 1);
+        gridLayout_2->addWidget(pushButton, 1, 1, 1, 1);
 
         scrollArea = new QScrollArea(Dialog);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 578, 517));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 570, 517));
         gridLayout_3 = new QGridLayout(scrollAreaWidgetContents);
         gridLayout_3->setSpacing(6);
         gridLayout_3->setContentsMargins(11, 11, 11, 11);
@@ -66,12 +67,18 @@ public:
 
         scrollArea->setWidget(scrollAreaWidgetContents);
 
-        gridLayout_2->addWidget(scrollArea, 0, 0, 1, 1);
+        gridLayout_2->addWidget(scrollArea, 0, 1, 1, 1);
 
         pushButton_2 = new QPushButton(Dialog);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
 
-        gridLayout_2->addWidget(pushButton_2, 2, 0, 1, 1);
+        gridLayout_2->addWidget(pushButton_2, 2, 1, 1, 1);
+
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+
+        gridLayout_2->addLayout(verticalLayout_2, 0, 0, 1, 1);
 
 
         retranslateUi(Dialog);

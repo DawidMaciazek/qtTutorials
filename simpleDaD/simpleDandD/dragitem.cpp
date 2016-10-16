@@ -8,6 +8,7 @@
 
 DragItem::DragItem(int i, QWidget *parent): QLabel(parent)
 {
+    number = i;
     this->setText("~~~~~\n-----\n<(" + QString::number(i) + ")>\n-----\n~~~~~");
 
     this->setStyleSheet("QLabel { background-color : gray ; }");
@@ -28,8 +29,10 @@ void DragItem::mousePressEvent(QMouseEvent *event)
     QByteArray itemData;
     QDataStream dataStream(&itemData, QIODevice::WriteOnly);
 
+    dataStream << number;
+
     QMimeData *mime = new QMimeData;
-    mime->setData("application/x-dnditemdata", itemData);
+    mime->setData(DragItem::dragItemMimeType(), itemData);
 
 
 

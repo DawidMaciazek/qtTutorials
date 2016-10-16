@@ -71,58 +71,83 @@ void Dialog::dragEnterEvent(QDragEnterEvent *event)
 
 void Dialog::dropEvent(QDropEvent *event)
 {
-    int dragPos = event->pos().y();
+    if(! event->mimeData()->hasFormat(DragItem::dragItemMimeType()))
+    {
+        event->ignore();
+        return;
+    }
+
+    int scrollShift = 0;
+
+    if(ui->scrollArea->verticalScrollBar())
+        scrollShift = ui->scrollArea->verticalScrollBar()->value();
+
+    int dropPos = event->pos().y() + scrollShift;
     int cnt = ui->verticalLayout->count();
 
     QVector<DragItem *> widgets;
+    DragItem * dropWidget = NULL;
 
-    int sourceIndex = -1;
-    int swapIndex = -1;
+    qDebug() << "dro event: " << dropPos;
 
-    qDebug() << "dro event";
+    qDebug() << scrollShift;
+
+    int dropIndex = 0;
+    int localWidget = 0;
+    bool continueSearch = true;
     for(int i=0; i<cnt; i++)
     {
-        qDebug() << i;
         DragItem *currentWidget =
                 qobject_cast<DragItem *>(ui->verticalLayout->itemAt(i)->widget());
+        int currentCenter = currentWidget->pos().y() + currentWidget->height()/2;
 
-        if(currentWidget)
+        if(dropPos < currentCenter && continueSearch)
+        {
+            dropIndex = i - localWidget;
+            continueSearch = false;
+        }
+
+        if(currentWidget == event->source())
+        {
+            localWidget = 1;
+            dropWidget = currentWidget;
+        }
+        else
         {
             widgets.append(currentWidget);
         }
+    }
 
-        int y = currentWidget->pos().y();
-        int h = currentWidget->height();
+    if(continueSearch)
+    {
+        dropIndex = cnt - 1;
+    }
 
-        if (dragPos > y && dragPos < y+h)
-        {
-            swapIndex = i;
-        }
+    if(dropWidget == NULL)
+    {
+        qDebug() << "widget is from outside !!";
+        QByteArray itemData = event->mimeData()->data(DragItem::dragItemMimeType());
+        QDataStream dataStream(&itemData, QIODevice::ReadOnly);
 
-        if (currentWidget == event->source())
-        {
-            sourceIndex = i;
-        }
+        int itemIndex;
+        dataStream >> itemIndex;
+
+        widgets.insert(dropIndex,new DragItem(itemIndex,this));
+    }
+    else
+    {
+        widgets.insert(dropIndex, dropWidget);
     }
 
     for(int i=0; i<widgets.length(); i++)
     {
-        qDebug() << "removing:"<<i;
         ui->verticalLayout->removeWidget(widgets[i]);
-        //ui->gridLayout->removeWidget(widgets[i]);
     }
 
-    //for(int i=widgets.length()-1; i>=0; i--)
     for(int i=0; i<widgets.length(); i++)
     {
-        //if(i == 2)
-        //    continue;
         ui->verticalLayout->addWidget(widgets[i]);
     }
-    ui->verticalLayout->addWidget(widgets[2]);
-
-    qDebug() << ui->scrollArea->size();
-    qDebug() << ui->scrollArea->verticalScrollBar()->value();
 
     /*
     DragItem *sourceWidget = qobject_cast<DragItem *>(ui->gridLayout->itemAtPosition(sourceIndex,0)->widget());
@@ -147,16 +172,9 @@ void Dialog::dropEvent(QDropEvent *event)
 
 void Dialog::on_pushButton_clicked()
 {
-
-    //DragItem *drag = new DragItem(cnt, this);
-
-    //QGraphicsColorizeEffect *effect = new QGraphicsColorizeEffect(this);
-    //effect->setColor(QColor(124,124,124,124));
-
-
-    //ui->horizontalLayout->addWidget(drag);
-
-
+    DragItem *drag = new DragItem(cnt, this);
+    ui->verticalLayout_2->addWidget(drag);
+    cnt++;
 }
 
 void Dialog::on_pushButton_2_clicked()

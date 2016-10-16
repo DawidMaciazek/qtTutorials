@@ -11,6 +11,10 @@ public:
     DragItem(int i, QWidget *parent = 0);
     ~DragItem();
 
+    int number;
+
+    static QString dragItemMimeType() { return QStringLiteral("dragitem/spectrum") ;};
+
 protected:
     void mousePressEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
     void mouseReleaseEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
